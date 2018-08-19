@@ -13,10 +13,9 @@ public abstract class Enemy : Living {
 
     [SerializeField]
     private Vector3 firstDestination;
+
     private int nextPos;
-    private float int_HitRadiusDistance = 2000f;
-    
-  
+    private float int_HitRadiusDistance = 2000f;  
 
     public NavMeshAgent navMeshAgent;
 
@@ -33,11 +32,12 @@ public abstract class Enemy : Living {
     }
 
     public override void movement()
-    {   
+    {
         // have to hard code height because navmesh rises the position up
-        Vector3 curDes = new Vector3(firstDestination.x, 0.009f, firstDestination.z);
+        Vector3 yZero = new Vector3(transform.position.x, 0, transform.position.z);
 
-        if (transform.position == curDes) {
+
+        if (yZero == firstDestination) {
             if (nextPos + 1 >= movepositions.Length)
             {
                 nextPos = 0;

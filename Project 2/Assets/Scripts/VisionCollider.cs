@@ -4,29 +4,20 @@ using UnityEngine;
 
 public class VisionCollider : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    public Light visionLight;
+
+
+    // Use this for initialization
+    void Start () {
+        //visionLight = GetComponent<Light>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+       // visionLight = GetComponent<Light>();
 
-    //void OnCollisionEnter(Collision col)
-    //{
 
-    //    Debug.Log(col.gameObject.name);
-    //    if (col.gameObject.name == "Player")
-    //    {
-    //        Vector3 pos = col.transform.position;
-    //        Sight s = GetComponentInParent<Sight>();
-
-    //        if (s != null)
-    //            s.shootRay(pos);
-    //    }
-    //}
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,8 +28,11 @@ public class VisionCollider : MonoBehaviour {
             Enemy s = GetComponentInParent<Enemy>();
 
             if (s != null)
-                s.shootRay(pos);
+            {
+                visionLight.color = Color.red;
 
+                s.shootRay(pos);
+            }
             // Destroy(other.gameObject);
         }
     }
@@ -52,10 +46,16 @@ public class VisionCollider : MonoBehaviour {
             Enemy s = GetComponentInParent<Enemy>();
 
             if (s != null)
+            {
+                visionLight.color = Color.red;
                 s.shootRay(pos);
-
+            }
             // Destroy(other.gameObject);
         }
+
     }
+
+  
+
 }
 

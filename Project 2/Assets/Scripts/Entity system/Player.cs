@@ -9,15 +9,13 @@ public class Player : Living {
     public Image[] hearts;
     public Sprite heart;
     Quaternion prevRotation;
-    Vector3 originalPos, oriCamPos;
-    public Camera mainCam;
+    Vector3 originalPos;
 
 
     bool invincible;
 
     public void respawn() {
         transform.position = originalPos;
-        mainCam.transform.position = oriCamPos;
     }
 
     public override void movement()
@@ -38,9 +36,7 @@ public class Player : Living {
 
         transform.Translate(movement * 3 * Time.deltaTime, Space.World);
 
-        //if (Vector3.Distance(prevLocation,transform.position) < 1) {
-            mainCam.transform.Translate(movement * 3 * Time.deltaTime, Space.World);
-        //}
+
     }
 
     public override void Damage(int damageTaken)
@@ -66,7 +62,6 @@ public class Player : Living {
 
         // gameObject.transform.position = startPos;
         originalPos = transform.position;
-        oriCamPos = mainCam.transform.position;
     }
 
     // Update is called once per frame
