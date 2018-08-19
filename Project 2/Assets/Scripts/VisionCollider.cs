@@ -34,7 +34,7 @@ public class VisionCollider : MonoBehaviour {
         {
 
             Vector3 pos = other.transform.position;
-            Sight s = GetComponentInParent<Sight>();
+            Enemy s = GetComponentInParent<Enemy>();
 
             if (s != null)
                 s.shootRay(pos);
@@ -49,7 +49,7 @@ public class VisionCollider : MonoBehaviour {
         {
 
             Vector3 pos = other.transform.position;
-            Sight s = GetComponentInParent<Sight>();
+            Enemy s = GetComponentInParent<Enemy>();
 
             if (s != null)
                 s.shootRay(pos);

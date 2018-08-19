@@ -38,9 +38,9 @@ public class Player : Living {
 
         transform.Translate(movement * 3 * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(prevLocation,transform.position) < 1) {
+        //if (Vector3.Distance(prevLocation,transform.position) < 1) {
             mainCam.transform.Translate(movement * 3 * Time.deltaTime, Space.World);
-        }
+        //}
     }
 
     public override void Damage(int damageTaken)
