@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sight : MonoBehaviour {
     float int_HitRadiusDistance = 2000f;
@@ -27,7 +28,11 @@ public class Sight : MonoBehaviour {
         {
             if (hit.collider.gameObject.name == "Player")
             {
-                Destroy(hit.collider.gameObject);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                //Destroy(hit.collider.gameObject);     
+                Player p = hit.collider.gameObject.GetComponent<Player>();
+                p.Damage(1);
+                p.respawn();
             }
         }
     }
