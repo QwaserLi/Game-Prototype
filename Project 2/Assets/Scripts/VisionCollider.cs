@@ -5,11 +5,12 @@ using UnityEngine;
 public class VisionCollider : MonoBehaviour {
 
     public Light visionLight;
-
+    Color baseColor;
 
     // Use this for initialization
     void Start () {
         //visionLight = GetComponent<Light>();
+        baseColor = visionLight.color;
 	}
 	
 	// Update is called once per frame
@@ -29,10 +30,19 @@ public class VisionCollider : MonoBehaviour {
 
             if (s != null)
             {
-                visionLight.color = Color.red;
 
                 s.shootRay(pos);
             }
+            // Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+
+            visionLight.color = baseColor;
             // Destroy(other.gameObject);
         }
     }
@@ -47,7 +57,6 @@ public class VisionCollider : MonoBehaviour {
 
             if (s != null)
             {
-                visionLight.color = Color.red;
                 s.shootRay(pos);
             }
             // Destroy(other.gameObject);

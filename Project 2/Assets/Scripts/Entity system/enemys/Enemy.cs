@@ -14,16 +14,20 @@ public abstract class Enemy : Living {
     [SerializeField]
     private Vector3 firstDestination;
 
+    //public GameObject vision;
+
     private int nextPos;
     private float int_HitRadiusDistance = 2000f;  
 
     public NavMeshAgent navMeshAgent;
 
+    public Light visionLight;
+
+
     void Start() {
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = movespeed;
         //navMeshAgent.updateRotation = false;
-
     }
 
     public override void Damage(int damageTaken)
@@ -54,7 +58,7 @@ public abstract class Enemy : Living {
     }
 
     public void shootRay(Vector3 playerPosition)
-    {
+    {   
         Vector3 direction = (playerPosition - transform.position).normalized;
 
         Ray ray1 = new Ray(transform.position, direction);
@@ -67,10 +71,11 @@ public abstract class Enemy : Living {
             if (hit.collider.gameObject.name == "Player")
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                //Destroy(hit.collider.gameObject);     
-                Player p = hit.collider.gameObject.GetComponent<Player>();
-                p.Damage(1);
-                p.respawn();
+                //Destroy(hit.collider.gameObject); 
+                //Player p = hit.collider.gameObject.GetComponent<Player>();
+                //p.Damage(1);
+                //p.respawn();
+                visionLight.color = Color.red;
             }
         }
     }
