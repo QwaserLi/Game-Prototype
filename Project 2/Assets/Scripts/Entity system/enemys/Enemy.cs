@@ -43,7 +43,7 @@ public abstract class Enemy : Living {
         if (collision.gameObject.name == "Player" && chasing) {
             Player p = collision.gameObject.GetComponent<Player>();
             p.Damage(1);
-            p.respawn();
+
         }
     }
 

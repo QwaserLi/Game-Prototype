@@ -8,4 +8,8 @@ public abstract class Living : Entity {
     protected int health;
     public abstract void Damage(int damageTaken);
 
+    public int getHealth() {
+        return health;
+    }
+
 }
