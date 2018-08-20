@@ -43,6 +43,8 @@ public class VisionCollider : MonoBehaviour {
         {
 
             visionLight.color = baseColor;
+            Enemy s = GetComponentInParent<Enemy>();
+            //s.chasing = false;
             // Destroy(other.gameObject);
         }
     }

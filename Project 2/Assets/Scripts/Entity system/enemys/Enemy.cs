@@ -15,11 +15,12 @@ public abstract class Enemy : Living {
     private Vector3 firstDestination;
 
     //public GameObject vision;
-
-    protected bool chasing;
+    
+    public bool chasing;
 
     private int nextPos;
-    private float int_HitRadiusDistance = 2000f;  
+    private float int_HitRadiusDistance = 2000f;
+    protected Vector3 playerPosition;
 
     public NavMeshAgent navMeshAgent;
 
@@ -37,8 +38,23 @@ public abstract class Enemy : Living {
 
     }
 
-    public void chase(Vector3 position) {
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player" && chasing) {
+            Player p = collision.gameObject.GetComponent<Player>();
+            p.Damage(1);
+            p.respawn();
+        }
 
+
+
+    }
+
+    public void chase() {
+        navMeshAgent.SetDestination(firstDestination);
+        firstDestination = movepositions[nextPos];
+
+        chasing = false;
     }
 
     public override void movement()
@@ -58,7 +74,6 @@ public abstract class Enemy : Living {
 
             firstDestination = movepositions[nextPos];
         }
-        //transform.rotation = Quaternion.LookRotation(navMeshAgent.velocity.normalized);
 
         navMeshAgent.SetDestination(firstDestination);
     }
@@ -78,12 +93,10 @@ public abstract class Enemy : Living {
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 //Destroy(hit.collider.gameObject); 
-                //Player p = hit.collider.gameObject.GetComponent<Player>();
-                //p.Damage(1);
-                //p.respawn();
                 visionLight.color = Color.red;
                 chasing = true;
-
+                firstDestination = hit.collider.gameObject.transform.position;
+                
             }
         }
     }
