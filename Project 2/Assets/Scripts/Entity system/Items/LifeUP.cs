@@ -13,4 +13,16 @@ public class LifeUP : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player" )
+        {
+            Player p = other.gameObject.GetComponent<Player>();
+            p.lifeUP(1);
+            p.changeMovespeed(1);
+            Destroy(gameObject);
+
+        }
+    }
 }

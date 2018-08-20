@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 
 public class Player : Living {
-    
+
+    [SerializeField]
+    protected int movespeed;
+
+
     public Image[] hearts;
     public Sprite heart;
-    Quaternion prevRotation;
     Vector3 originalPos;
 
 
     bool invincible, control;
 
-    public void respawn() {
-        transform.position = originalPos;
-    }
+
 
     public override void movement()
     {
@@ -26,17 +27,10 @@ public class Player : Living {
             float moveVertical = Input.GetAxisRaw("Vertical");
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            if (moveHorizontal == 0 && moveVertical == 0)
-            {
-                prevRotation = transform.rotation;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
-            }
-            Vector3 prevLocation = transform.position;
-
-            transform.Translate(movement * 3 * Time.deltaTime, Space.World);
+        
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+            
+            transform.Translate(movement * movespeed * Time.deltaTime, Space.World);
         }
 
     }
@@ -65,6 +59,16 @@ public class Player : Living {
     void toggleControl()
     {
         control = !control;
+    }
+
+    public void changeMovespeed(int speed)
+    {
+        movespeed += speed;
+    }
+
+    public void respawn()
+    {
+        transform.position = originalPos;
     }
 
     // Use this for initialization

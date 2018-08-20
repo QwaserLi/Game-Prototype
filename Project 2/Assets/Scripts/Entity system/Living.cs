@@ -12,4 +12,15 @@ public abstract class Living : Entity {
         return health;
     }
 
+    public void lifeUP(int heal) {
+        if (heal > 0)
+        {
+            health++;
+        }
+        else {
+            Debug.Log("Need positive healing");
+        }
+    }
+
+
 }
