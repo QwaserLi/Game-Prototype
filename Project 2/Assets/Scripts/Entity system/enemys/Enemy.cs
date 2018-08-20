@@ -45,23 +45,20 @@ public abstract class Enemy : Living {
             p.Damage(1);
             p.respawn();
         }
-
-
-
     }
 
     public void chase() {
         navMeshAgent.SetDestination(firstDestination);
-        firstDestination = movepositions[nextPos];
+    }
 
-        chasing = false;
+    public void resetMovement() {
+        firstDestination = movepositions[nextPos];
     }
 
     public override void movement()
     {
         // have to hard code height because navmesh rises the position up
         Vector3 yZero = new Vector3(transform.position.x, 0, transform.position.z);
-
 
         if (yZero == firstDestination) {
             if (nextPos + 1 >= movepositions.Length)
@@ -74,7 +71,6 @@ public abstract class Enemy : Living {
 
             firstDestination = movepositions[nextPos];
         }
-
         navMeshAgent.SetDestination(firstDestination);
     }
 
