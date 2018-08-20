@@ -11,6 +11,11 @@ public class RoboEnemy : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-        movement();
+        if(!chasing)
+            movement();
+        else
+        {
+            chase();
+        }
 	}
 }

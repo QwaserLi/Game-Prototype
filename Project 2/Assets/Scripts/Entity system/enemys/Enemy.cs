@@ -16,6 +16,8 @@ public abstract class Enemy : Living {
 
     //public GameObject vision;
 
+    protected bool chasing;
+
     private int nextPos;
     private float int_HitRadiusDistance = 2000f;  
 
@@ -32,6 +34,10 @@ public abstract class Enemy : Living {
 
     public override void Damage(int damageTaken)
     {
+
+    }
+
+    public void chase(Vector3 position) {
 
     }
 
@@ -76,6 +82,8 @@ public abstract class Enemy : Living {
                 //p.Damage(1);
                 //p.respawn();
                 visionLight.color = Color.red;
+                chasing = true;
+
             }
         }
     }
