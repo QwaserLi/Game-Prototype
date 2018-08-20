@@ -16,6 +16,7 @@ public class Player : Living {
 
 
     bool invincible, control;
+    private Quaternion prevRotation;
 
     // Use this for initialization
     void Start()
@@ -49,7 +50,15 @@ public class Player : Living {
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+
+            if (moveHorizontal == 0 && moveVertical == 0)
+            {
+                prevRotation = transform.rotation;
+            }
+            else
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+            }
 
             transform.Translate(movement * movespeed * Time.deltaTime, Space.World);
         }
@@ -61,11 +70,11 @@ public class Player : Living {
         if (!invincible)
         {
 
-            //health -= damageTaken;
+            health -= damageTaken;
 
             toggleInvulnerability();
             Invoke("toggleInvulnerability", 2);
-            //respawn();
+            respawn();
             //Invoke("respawn", 1);
             //Invoke("toggleControl", 1);
 

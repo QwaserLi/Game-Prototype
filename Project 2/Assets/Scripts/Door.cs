@@ -5,11 +5,13 @@ using UnityEngine;
 public class Door : MonoBehaviour {
 
     public Vector3 slideTowards;
+    public GameObject keyWarning;
+    public int DoorId;
     bool open;
 
 	// Use this for initialization
 	void Start () {
-		
+        keyWarning.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class Door : MonoBehaviour {
             Destroy(gameObject);
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
@@ -31,11 +34,22 @@ public class Door : MonoBehaviour {
 
             foreach (Items i in p.getInventory()) {
                 if (i.GetType() == typeof(Key)) {
-                    open = true;
+                    Key k = (Key)i;
+                    if (k.keyID == DoorId)
+                    {
+                        open = true;
+                        return;
+                    }
                 }
             }
+            keyWarning.SetActive(true);
+            Invoke("warningOff", 3);
 
             // Destroy(other.gameObject);
         }
+    }
+
+    void warningOff() {
+        keyWarning.SetActive(false);
     }
 }
