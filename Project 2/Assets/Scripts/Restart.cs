@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Restart : MonoBehaviour {
 
-    private string scene = "Project2";
+    private string scene = "WorkForce";
     public Color loadToColor = Color.black;
 
     // Use this for initialization
