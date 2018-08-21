@@ -16,6 +16,7 @@ public class LifeUP : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        //When play triggers this increase play health and increase move speed
         if (other.gameObject.name == "Player" )
         {
             Player p = other.gameObject.GetComponent<Player>();

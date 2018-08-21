@@ -59,8 +59,22 @@ public class Player : Living {
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
             }
+            Vector3 prevPos = transform.position;
 
             transform.Translate(movement * movespeed * Time.deltaTime, Space.World);
+            Vector3 direction = transform.position - prevPos;
+
+            Ray ray1 = new Ray(prevPos, direction);
+            RaycastHit hit = new RaycastHit();
+            bool collide = Physics.Raycast(ray1, out hit, 0.2f);
+            Debug.DrawRay(prevPos, direction);
+
+            if (collide) {
+                if (hit.collider.gameObject.tag == "Wall")
+                    transform.position = prevPos;
+
+                Debug.Log(hit.collider.gameObject.name);
+            }
         }
 
     }

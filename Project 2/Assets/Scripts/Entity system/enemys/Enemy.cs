@@ -81,14 +81,12 @@ public abstract class Enemy : Living {
         Ray ray1 = new Ray(transform.position, direction);
         RaycastHit hit = new RaycastHit();
         bool collide = Physics.Raycast(ray1, out hit, int_HitRadiusDistance);
-        //Debug.Log(hit.collider.gameObject.name);
 
         if (collide)
         {
             if (hit.collider.gameObject.name == "Player")
             {
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                //Destroy(hit.collider.gameObject); 
+        
                 visionLight.color = Color.red;
                 chasing = true;
                 firstDestination = hit.collider.gameObject.transform.position;
@@ -97,6 +95,5 @@ public abstract class Enemy : Living {
         }
     }
 
-    // Use this for initialization
   
 }
