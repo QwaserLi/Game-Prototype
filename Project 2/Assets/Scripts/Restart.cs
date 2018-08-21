@@ -20,5 +20,10 @@ public class Restart : MonoBehaviour {
             Initiate.Fade(scene, loadToColor, 3.0f);
         }
 
+        if (Input.GetKeyDown("n"))
+        {
+            Application.Quit();
+        }
+
     }
 }
