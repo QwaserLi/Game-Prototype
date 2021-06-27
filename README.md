@@ -1,4 +1,4 @@
-# WorkForce
+# WorkForce - MDDN221 Assessment
 
 The game loop is done through the update function, triggers and colliders. The Level gameobject constantly checks for when the play health is 0 or if the player has reached the goal and will
 display the corrent endgame screen depending on the state. Most of the movement logic is done within the update function of the script attached the gameobject.
